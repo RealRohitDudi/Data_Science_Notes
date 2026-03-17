@@ -1,3 +1,4 @@
+from http.client import responses
 from tkinter import Button
 
 from db_methods import Database
@@ -11,10 +12,10 @@ class Layout:
         self.root.geometry("300x300")
         self.root.resizable(width=True, height=True)
         self.root.title("RohitDudi")
-        self.root.configure(background="purple")
+        self.root.configure(background="blue")
         self.root.mainloop()
 
-    def Login(self):
+    def login(self):
         self.clear()
         top_title = Lable(self.root,text="NLP App")
         top_title.pack(pady=10)
@@ -58,16 +59,33 @@ class Layout:
         password_entry.pack(pady=10)
 
         signup_button = Button(self.root,text="Login",command=self.do_signup(name,email,password))
-
+        signup_button.pack(pady=10)
     def clear(self):
         ui = self.pack_slaves()
         ui.destroy()
 
 
-    def do_login(self,email,password):
-        db1.search(email,password)
+    async def do_login(self,email,password):
+        response = await db1.search(email,password)
+        if response == 200:
+            home()
+        elif response == 201:
+            print("wrong password")
+        elif response == 404:
+            print("Email does not exist")
 
-    def do_signup(self, name, email, password):
-            db1.create(name, email, password)
+
+    async def do_signup(self, name, email, password):
+           response = await db1.create(name, email, password)
+           if  await response == 200:
+               login()
+           elif await response == 409:
+               print("Email already exists")
+           else:
+               print("Error while creating user")
+
+    def home(self):
+        self.clear()
+
 
 app1 = Layout()
