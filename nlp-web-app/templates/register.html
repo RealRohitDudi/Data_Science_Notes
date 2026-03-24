@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP Flask web app</title>
+</head>
+<body>
+<h1>NLP web app</h1>
+ <h2>Register to continue</h2>
+
+{% if message %}
+  <p style="color:red">{{ message }}</p>
+{% else %}
+  <p></p>
+{% endif %}
+
+  <form action="/perform_register" method="post">
+      <label for="email">Enter your name</label> <br>
+      <input name="name" type="text"><br>
+      <label for="email">Enter email</label> <br>
+      <input name='email' type="email"><br>
+      <label for="password">Create password</label> <br>
+      <input name='password' type="password"> <br>
+      <input type="submit" value="register">
+  </form>
+
+    <p>Already a member? <a href="/">Login here</a></p>
+</body>
+</html>

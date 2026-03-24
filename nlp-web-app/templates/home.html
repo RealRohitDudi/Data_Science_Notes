@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP app</title>
+</head>
+<body>
+<h1>Welcome to NLP app</h1>
+{% if message %}
+  <p style="color:green">{{ message }}</p>
+{% else %}
+  <p></p>
+{% endif %}
+
+<form action="/get_ner" method="post">
+    <textarea name="data">
+
+    </textarea> <br>
+    <input type="submit" value="Get NER">
+</form>
+</body>
+</html>
