@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPL Data Analysis Tool</title>
+</head>
+<body>
+
+<h1>IPL Data Analysis Tool</h1>
+
+{{message}}
+
+<form action="/teamVteam" method = "get">
+   <label>Choose team 1</label>
+   <select name = "team1">
+       {% if teams %}
+         {% for i in teams %}
+       <option name="">{{ i }}</option>
+         {% endfor %}
+       {% endif %}
+   </select> <br>
+
+   <label>Choose team 2</label>
+   <select name = "team2">
+       {% if teams %}
+         {% for i in teams %}
+       <option name="">{{ i }}</option>
+         {% endfor %}
+       {% endif %}
+   </select>
+
+    <input type="submit" value="Find Team Records" >
+</form>
+
+{% if result %}
+    {% for i in result %}
+    <p>{{ i }}:{{ result[i] }}</p> <br>
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>

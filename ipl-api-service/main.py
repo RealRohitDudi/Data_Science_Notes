@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask, request
 
 import apis,jugaad
 
@@ -30,9 +30,9 @@ def battingRecord():
     return jugaad.batsmanAPI(batter)
 
 
-@app.route("/balling-record")
-def ballingRecord():
-    bowler = request.args.get('baller')
+@app.route("/bowling-record")
+def bowlingRecord():
+    bowler = request.args.get('bowler')
     return jugaad.ballerAPI(bowler)
 
 app.run(debug=True)
